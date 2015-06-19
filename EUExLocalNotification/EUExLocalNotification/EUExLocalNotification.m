@@ -11,8 +11,16 @@
 
 @implementation EUExLocalNotification
 
+
+
+
+
 -(id)initWithBrwView:(EBrowserView *) eInBrwView {	
 	if (self = [super initWithBrwView:eInBrwView]) {
+        if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)])
+        {
+            [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+        }
 	}
 	return self;
 }
