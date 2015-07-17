@@ -25,6 +25,43 @@
 	return self;
 }
 
++(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+    UIApplicationState state = [application applicationState];
+    
+    if (state == UIApplicationStateActive) {
+        
+        //		NSString *notID = [notification.userInfo objectForKey:@"notificationId"];
+        NSString * msg = [notification.userInfo objectForKey:@"msg"];
+        //		NSString * jsStr = [NSString stringWithFormat:@"uexLocalNotification.onActive(\'%@\', \'%@\')", notID, msg];
+        //		EBrowserView *brwView = [meBrwCtrler.meBrwMainFrm.meBrwWgtContainer aboveWindowContainer].meRootBrwWnd.meBrwView;
+        //		if (brwView) {
+        //			[brwView  stringByEvaluatingJavaScriptFromString:jsStr];
+        //		}
+        application.applicationIconBadgeNumber = 0;
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
+        alertView.tag = 200;
+        [alertView show];
+        [alertView release];
+        
+    } else {
+        
+        NSString * notID = [notification.userInfo objectForKey:@"notificationId"];
+        NSString * jsStr = [NSString stringWithFormat:@"uexLocalNotification.onActive(\'%@\')", notID];
+        /*
+        EBrowserView *brwView = [meBrwCtrler.meBrwMainFrm.meBrwWgtContainer aboveWindowContainer].meRootBrwWnd.meBrwView;
+        if (brwView) {
+            
+            [brwView  stringByEvaluatingJavaScriptFromString:jsStr];
+            
+        }
+         */
+        [EUtility evaluatingJavaScriptInRootWnd:jsStr];
+        application.applicationIconBadgeNumber = 0;
+        
+    }
+
+}
+
 -(void)dealloc {
 	[super dealloc];
 }
