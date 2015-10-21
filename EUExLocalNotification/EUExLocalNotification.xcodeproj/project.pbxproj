@@ -7,9 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C1AD5CA1BD610D90091D2A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C1AD5CC1BD610D90091D2A1 /* Localizable.strings */; };
 		5A5018F6188FCEEA0022E07C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A5018F5188FCEEA0022E07C /* Foundation.framework */; };
 		5A5018FD188FCEEA0022E07C /* EUExLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5018FC188FCEEA0022E07C /* EUExLocalNotification.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3C1AD5C61BD610C40091D2A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5A5018EA188FCEEA0022E07C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C1AD5BF1BD610910091D2A1;
+			remoteInfo = uexLocalNotificationBundle;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		5A5018F0188FCEEA0022E07C /* CopyFiles */ = {
@@ -24,6 +35,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C1AD5C01BD610910091D2A1 /* uexLocalNotification.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uexLocalNotification.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C1AD5C21BD610910091D2A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C1AD5CB1BD610D90091D2A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3C1AD5CD1BD610E60091D2A1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5A5018F2188FCEEA0022E07C /* libuexLocalNotification.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libuexLocalNotification.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A5018F5188FCEEA0022E07C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5A5018F9188FCEEA0022E07C /* EUExLocalNotification-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EUExLocalNotification-Prefix.pch"; sourceTree = "<group>"; };
@@ -35,6 +50,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3C1AD5BD1BD610910091D2A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5A5018EF188FCEEA0022E07C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,10 +68,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C1AD5C11BD610910091D2A1 /* uexLocalNotificationBundle */ = {
+			isa = PBXGroup;
+			children = (
+				3C1AD5C21BD610910091D2A1 /* Info.plist */,
+			);
+			path = uexLocalNotificationBundle;
+			sourceTree = "<group>";
+		};
 		5A5018E9188FCEEA0022E07C = {
 			isa = PBXGroup;
 			children = (
+				3C1AD5CC1BD610D90091D2A1 /* Localizable.strings */,
 				5A5018F7188FCEEA0022E07C /* EUExLocalNotification */,
+				3C1AD5C11BD610910091D2A1 /* uexLocalNotificationBundle */,
 				5A5018F4188FCEEA0022E07C /* Frameworks */,
 				5A5018F3188FCEEA0022E07C /* Products */,
 			);
@@ -59,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				5A5018F2188FCEEA0022E07C /* libuexLocalNotification.a */,
+				3C1AD5C01BD610910091D2A1 /* uexLocalNotification.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,6 +144,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3C1AD5BF1BD610910091D2A1 /* uexLocalNotificationBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C1AD5C51BD610910091D2A1 /* Build configuration list for PBXNativeTarget "uexLocalNotificationBundle" */;
+			buildPhases = (
+				3C1AD5BC1BD610910091D2A1 /* Sources */,
+				3C1AD5BD1BD610910091D2A1 /* Frameworks */,
+				3C1AD5BE1BD610910091D2A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = uexLocalNotificationBundle;
+			productName = uexLocalNotificationBundle;
+			productReference = 3C1AD5C01BD610910091D2A1 /* uexLocalNotification.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		5A5018F1188FCEEA0022E07C /* EUExLocalNotification */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A501915188FCEEA0022E07C /* Build configuration list for PBXNativeTarget "EUExLocalNotification" */;
@@ -122,6 +172,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3C1AD5C71BD610C40091D2A1 /* PBXTargetDependency */,
 			);
 			name = EUExLocalNotification;
 			productName = EUExLocalNotification;
@@ -136,6 +187,11 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = xll;
+				TargetAttributes = {
+					3C1AD5BF1BD610910091D2A1 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+				};
 			};
 			buildConfigurationList = 5A5018ED188FCEEA0022E07C /* Build configuration list for PBXProject "EUExLocalNotification" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -143,6 +199,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 5A5018E9188FCEEA0022E07C;
 			productRefGroup = 5A5018F3188FCEEA0022E07C /* Products */;
@@ -150,11 +207,30 @@
 			projectRoot = "";
 			targets = (
 				5A5018F1188FCEEA0022E07C /* EUExLocalNotification */,
+				3C1AD5BF1BD610910091D2A1 /* uexLocalNotificationBundle */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		3C1AD5BE1BD610910091D2A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C1AD5CA1BD610D90091D2A1 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		3C1AD5BC1BD610910091D2A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5A5018EE188FCEEA0022E07C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -165,7 +241,75 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3C1AD5C71BD610C40091D2A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C1AD5BF1BD610910091D2A1 /* uexLocalNotificationBundle */;
+			targetProxy = 3C1AD5C61BD610C40091D2A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3C1AD5CC1BD610D90091D2A1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3C1AD5CB1BD610D90091D2A1 /* en */,
+				3C1AD5CD1BD610E60091D2A1 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		3C1AD5C31BD610910091D2A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = $SRCROOT/uexLocalNotification;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = uexLocalNotificationBundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zywx.uexLocalNotificationBundle;
+				PRODUCT_MODULE_NAME = uexLocalNotification;
+				PRODUCT_NAME = uexLocalNotification;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		3C1AD5C41BD610910091D2A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = $SRCROOT/uexLocalNotification;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = uexLocalNotificationBundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zywx.uexLocalNotificationBundle;
+				PRODUCT_MODULE_NAME = uexLocalNotification;
+				PRODUCT_NAME = uexLocalNotification;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		5A501913188FCEEA0022E07C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -266,6 +410,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3C1AD5C51BD610910091D2A1 /* Build configuration list for PBXNativeTarget "uexLocalNotificationBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C1AD5C31BD610910091D2A1 /* Debug */,
+				3C1AD5C41BD610910091D2A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		5A5018ED188FCEEA0022E07C /* Build configuration list for PBXProject "EUExLocalNotification" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -38,7 +38,7 @@
         //			[brwView  stringByEvaluatingJavaScriptFromString:jsStr];
         //		}
         application.applicationIconBadgeNumber = 0;
-        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:UEX_LOCALIZEDSTRING(@"提示") message:msg delegate:self cancelButtonTitle:UEX_LOCALIZEDSTRING(@"确认") otherButtonTitles:nil];
         alertView.tag = 200;
         [alertView show];
         [alertView release];

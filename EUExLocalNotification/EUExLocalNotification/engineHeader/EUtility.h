@@ -31,6 +31,7 @@ void PluginLog(NSString *format, ...);
 + (void)brwView:(EBrowserView*)inBrwView addSubview:(UIView*)inSubView;
 //2015-5-6
 + (void)brwView:(EBrowserView*)inBrwView addSubviewToScrollView:(UIView*)inSubView;
++ (void)brwView:(EBrowserView*)inBrwView addSubviewToContainer:(UIView*)inSubView WithIndex:(NSInteger)index andIndentifier:(NSString *)identifier;
 
 + (void)brwView:(EBrowserView*)inBrwView evaluateScript:(NSString*)inScript;
 + (void)brwView:(EBrowserView*)inBrwView presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated;
@@ -69,4 +70,8 @@ void PluginLog(NSString *format, ...);
 //20140616 softToken
 +(NSString*)md5SoftToken;
 +(void)setRootViewGestureRecognizerEnabled:(BOOL)isEnable;
+
+
++(NSBundle *)bundleForPlugin:(NSString *)pluginName;
++(NSString *)uexPlugin:(NSString *)pluginName localizedString:(NSString *)key,...;
 @end
