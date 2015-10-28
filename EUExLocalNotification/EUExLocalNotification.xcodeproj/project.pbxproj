@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C1C09BE1BE061F100571E72 /* Localizations.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C1C09C01BE061F100571E72 /* Localizations.strings */; };
+		3C1C09BE1BE061F100571E72 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C1C09C01BE061F100571E72 /* Localizable.strings */; };
 		5A5018F6188FCEEA0022E07C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A5018F5188FCEEA0022E07C /* Foundation.framework */; };
 		5A5018FD188FCEEA0022E07C /* EUExLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5018FC188FCEEA0022E07C /* EUExLocalNotification.m */; };
 /* End PBXBuildFile section */
@@ -36,8 +36,8 @@
 
 /* Begin PBXFileReference section */
 		3C1AD5C01BD610910091D2A1 /* uexLocalNotification.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uexLocalNotification.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C1C09BF1BE061F100571E72 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizations.strings; sourceTree = "<group>"; };
-		3C1C09C11BE061F200571E72 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizations.strings"; sourceTree = "<group>"; };
+		3C1C09BF1BE061F100571E72 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3C1C09C11BE061F200571E72 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5A5018F2188FCEEA0022E07C /* libuexLocalNotification.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libuexLocalNotification.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A5018F5188FCEEA0022E07C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5A5018F9188FCEEA0022E07C /* EUExLocalNotification-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EUExLocalNotification-Prefix.pch"; sourceTree = "<group>"; };
@@ -70,7 +70,7 @@
 		3C1AD5C11BD610910091D2A1 /* uexLocalNotificationBundle */ = {
 			isa = PBXGroup;
 			children = (
-				3C1C09C01BE061F100571E72 /* Localizations.strings */,
+				3C1C09C01BE061F100571E72 /* Localizable.strings */,
 			);
 			path = uexLocalNotificationBundle;
 			sourceTree = "<group>";
@@ -215,7 +215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C1C09BE1BE061F100571E72 /* Localizations.strings in Resources */,
+				3C1C09BE1BE061F100571E72 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,13 +248,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3C1C09C01BE061F100571E72 /* Localizations.strings */ = {
+		3C1C09C01BE061F100571E72 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3C1C09BF1BE061F100571E72 /* en */,
 				3C1C09C11BE061F200571E72 /* zh-Hans */,
 			);
-			name = Localizations.strings;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
