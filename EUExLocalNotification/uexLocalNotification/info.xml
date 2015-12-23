@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <uexplugins>
     <plugin
-        uexName="uexLocalNotification" version="3.0.5" build="5">
-        <info>5:删除info.plist</info>
+        uexName="uexLocalNotification" version="3.0.6" build="6">
+        <info>6:添加IDE支持</info>
+        <build>5:删除info.plist</build>
         <build>4:添加国际化支持</build>
         <build>3:添加对接收到本地通知的处理方法</build>
         <build>2:修复iOS8.0+系统上可能不能正常发送通知的bug</build>
