@@ -8,5 +8,8 @@
 #import "EUExBase.h"
 
 @interface EUExLocalNotification : EUExBase {
+    
+
 }
+
 @end

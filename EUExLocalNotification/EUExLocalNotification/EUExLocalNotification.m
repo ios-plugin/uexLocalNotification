@@ -8,11 +8,14 @@
 
 #import "EUExLocalNotification.h"
 #import "EUtility.h"
+#import "JSON/JSON.h"
+
+@interface EUExLocalNotification()
+
+@end
+
 
 @implementation EUExLocalNotification
-
-
-
 
 
 -(id)initWithBrwView:(EBrowserView *) eInBrwView {	
@@ -25,6 +28,34 @@
 	return self;
 }
 
++(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    
+    UILocalNotification *notification = [launchOptions objectForKey:@"UIApplicationLaunchOptionsLocalNotificationKey"];
+    if(notification && notification.userInfo){
+        /*
+         UIAlertView *alert=[[UIAlertView alloc]init];
+         [alert addButtonWithTitle:@"didFinishLaunchingWithOptions"];
+         alert.message=[notification.userInfo JSONFragment];
+         [alert show];
+         */
+        NSUserDefaults *user= [NSUserDefaults standardUserDefaults];
+        [user setObject:notification.userInfo forKey:@"EUExLocalNotification_userInfo"];
+    }
+    return YES;
+}
++(void)rootPageDidFinishLoading{
+    NSUserDefaults *user= [NSUserDefaults standardUserDefaults];
+    NSDictionary *userInfo=[user objectForKey:@"EUExLocalNotification_userInfo"];
+    if(userInfo){
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(300 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+            NSString *extras=[userInfo objectForKey:@"extras"];
+            NSString * notID = [userInfo objectForKey:@"notificationId"];
+            NSString * jsStr = [NSString stringWithFormat:@"uexLocalNotification.onActive(\'%@\',\'%@\')",notID, [@{@"extras":extras} JSONFragment]];
+            [EUtility evaluatingJavaScriptInRootWnd:jsStr];
+            [user removeObjectForKey:@"EUExLocalNotification_userInfo"];
+        });
+    }
+}
 +(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
     UIApplicationState state = [application applicationState];
     
@@ -44,9 +75,10 @@
         [alertView release];
         
     } else {
-        
+        //NSDictionary *extras=[self parseRemoteNotification:[notification.userInfo objectForKey:@"extras"]];
+        NSString *extras=[notification.userInfo objectForKey:@"extras"];
         NSString * notID = [notification.userInfo objectForKey:@"notificationId"];
-        NSString * jsStr = [NSString stringWithFormat:@"uexLocalNotification.onActive(\'%@\')", notID];
+        NSString * jsStr = [NSString stringWithFormat:@"uexLocalNotification.onActive(\'%@\',\'%@\')",notID, [@{@"extras":extras} JSONFragment]];
         /*
         EBrowserView *brwView = [meBrwCtrler.meBrwMainFrm.meBrwWgtContainer aboveWindowContainer].meRootBrwWnd.meBrwView;
         if (brwView) {
@@ -61,7 +93,18 @@
     }
 
 }
-
++(NSDictionary *)parseRemoteNotification:(NSDictionary*)userinfo{
+    NSMutableDictionary *dict=[NSMutableDictionary dictionary];
+    NSMutableDictionary *extras=[NSMutableDictionary dictionary];
+    NSArray *keys=[userinfo allKeys];
+    
+    for(int i=0;i<[keys count];i++){
+        NSString *keyStr=keys[i];
+        [extras setValue:[userinfo objectForKey:keyStr] forKey:keyStr];
+    }
+    [dict setValue:extras forKey:@"extras"];
+    return dict;
+}
 -(void)dealloc {
 	[super dealloc];
 }
@@ -78,6 +121,7 @@
 	NSString *sound = nil;
 	NSString *repeat = nil;
 	NSInteger badge = -1;
+    NSMutableDictionary *extras=[NSMutableDictionary dictionary];
 	NSInteger count = [inArguments count];
 	if (count > 0) {
 		notificationId = [inArguments objectAtIndex:0];
@@ -102,7 +146,10 @@
 	}
 	if (count > 7) {
 		badge = [[inArguments objectAtIndex:7] intValue];
-	}
+    }
+    if (count > 8) {
+        extras = [[inArguments objectAtIndex:8] JSONValue];
+    }
 	NSMutableDictionary *repeatDict = [[NSMutableDictionary alloc] init];
     [repeatDict setObject:[NSNumber numberWithInt:NSDayCalendarUnit] forKey:@"daily"];
     [repeatDict setObject:[NSNumber numberWithInt:NSWeekCalendarUnit] forKey:@"weekly"];
@@ -131,7 +178,7 @@
     notif.applicationIconBadgeNumber = badge;
 	NSDictionary *userDict = nil;
 	if (msg && msg.length > 0) {
-		userDict = [NSDictionary dictionaryWithObjectsAndKeys:notificationId,@"notificationId",msg,@"msg",nil];
+		userDict = [NSDictionary dictionaryWithObjectsAndKeys:notificationId,@"notificationId",msg,@"msg",extras,@"extras",nil];
 	} else {
 		userDict = [NSDictionary dictionaryWithObjectsAndKeys:notificationId,@"notificationId",nil];
 	}

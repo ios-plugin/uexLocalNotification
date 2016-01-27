@@ -38,6 +38,15 @@
 		3C1AD5C01BD610910091D2A1 /* uexLocalNotification.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uexLocalNotification.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1C09BF1BE061F100571E72 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3C1C09C11BE061F200571E72 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		3CF517291C58744C00195545 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		3CF5172A1C58744C00195545 /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
+		3CF5172B1C58744C00195545 /* MD5Digest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Digest.h; sourceTree = "<group>"; };
+		3CF5172C1C58744C00195545 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		3CF5172D1C58744C00195545 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		3CF5172E1C58744C00195545 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		3CF5172F1C58744C00195545 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		3CF517301C58744C00195545 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		3CF517311C58744C00195545 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		5A5018F2188FCEEA0022E07C /* libuexLocalNotification.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libuexLocalNotification.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A5018F5188FCEEA0022E07C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5A5018F9188FCEEA0022E07C /* EUExLocalNotification-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EUExLocalNotification-Prefix.pch"; sourceTree = "<group>"; };
@@ -75,6 +84,29 @@
 			path = uexLocalNotificationBundle;
 			sourceTree = "<group>";
 		};
+		3C1ADFF51C58B24400CA4D59 /* sourceCode */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = sourceCode;
+			sourceTree = "<group>";
+		};
+		3CF517281C58744C00195545 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				3CF517291C58744C00195545 /* JSON.h */,
+				3CF5172A1C58744C00195545 /* JSONParser.h */,
+				3CF5172B1C58744C00195545 /* MD5Digest.h */,
+				3CF5172C1C58744C00195545 /* NSObject+SBJSON.h */,
+				3CF5172D1C58744C00195545 /* NSString+SBJSON.h */,
+				3CF5172E1C58744C00195545 /* SBJSON.h */,
+				3CF5172F1C58744C00195545 /* SBJsonBase.h */,
+				3CF517301C58744C00195545 /* SBJsonParser.h */,
+				3CF517311C58744C00195545 /* SBJsonWriter.h */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
 		5A5018E9188FCEEA0022E07C = {
 			isa = PBXGroup;
 			children = (
@@ -106,9 +138,10 @@
 			isa = PBXGroup;
 			children = (
 				FC61C70018AB635F00B2C1C5 /* EUExLocalNotification.h */,
-				5A50191B188FCF4E0022E07C /* engineHeader */,
-				5A50191F188FCF4E0022E07C /* sourceCode */,
 				5A5018FC188FCEEA0022E07C /* EUExLocalNotification.m */,
+				3C1ADFF51C58B24400CA4D59 /* sourceCode */,
+				3CF517281C58744C00195545 /* JSON */,
+				5A50191B188FCF4E0022E07C /* engineHeader */,
 				5A5018F8188FCEEA0022E07C /* Supporting Files */,
 			);
 			path = EUExLocalNotification;
@@ -130,13 +163,6 @@
 				5A50191E188FCF4E0022E07C /* EUtility.h */,
 			);
 			path = engineHeader;
-			sourceTree = "<group>";
-		};
-		5A50191F188FCF4E0022E07C /* sourceCode */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = sourceCode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +299,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EUExLocalNotification/sourceCode/lib",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zywx.uexLocalNotificationBundle;
@@ -297,6 +327,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EUExLocalNotification/sourceCode/lib",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zywx.uexLocalNotificationBundle;
