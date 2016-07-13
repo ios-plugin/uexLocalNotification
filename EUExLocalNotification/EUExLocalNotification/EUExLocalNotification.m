@@ -8,7 +8,7 @@
 
 #import "EUExLocalNotification.h"
 #import "EUtility.h"
-#import "JSON/JSON.h"
+
 
 @interface EUExLocalNotification()
 
@@ -18,16 +18,24 @@
 @implementation EUExLocalNotification
 
 
--(id)initWithBrwView:(EBrowserView *) eInBrwView {	
-	if (self = [super initWithBrwView:eInBrwView]) {
+//-(id)initWithBrwView:(EBrowserView *) eInBrwView {	
+//	if (self = [super initWithBrwView:eInBrwView]) {
+//        if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)])
+//        {
+//            [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+//        }
+//	}
+//	return self;
+//}
+-(id)initWithWebViewEngine:(id<AppCanWebViewEngineObject>)engine{
+    if (self = [super initWithWebViewEngine:engine]) {
         if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)])
         {
             [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
         }
-	}
-	return self;
+    }
+    return self;
 }
-
 +(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     
     UILocalNotification *notification = [launchOptions objectForKey:@"UIApplicationLaunchOptionsLocalNotificationKey"];
@@ -49,36 +57,51 @@
     if(userInfo){
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(300 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
             NSString *extras=[userInfo objectForKey:@"extras"];
-            NSString * notID = [userInfo objectForKey:@"notificationId"];
-            NSString * jsStr = [NSString stringWithFormat:@"uexLocalNotification.onActive(\'%@\',\'%@\')",notID, [@{@"extras":extras} JSONFragment]];
-            [EUtility evaluatingJavaScriptInRootWnd:jsStr];
+            NSString *notID = [userInfo objectForKey:@"notificationId"];
+            NSString *message = [userInfo objectForKey:@"msg"];
+            //NSString * jsStr = [NSString stringWithFormat:@"uexLocalNotification.onActive(\'%@\',\'%@\')",notID, [@{@"extras":extras} ac_JSONFragment]];
+            //[EUtility evaluatingJavaScriptInRootWnd:jsStr];
+             [AppCanRootWebViewEngine() callbackWithFunctionKeyPath:@"uexLocalNotification.onActive" arguments:ACArgsPack(notID,message,[@{@"extras":extras} ac_JSONFragment])];
             [user removeObjectForKey:@"EUExLocalNotification_userInfo"];
         });
     }
 }
 +(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
     UIApplicationState state = [application applicationState];
-    
+    NSDictionary *extras=[self parseRemoteNotification:[notification.userInfo objectForKey:@"extras"]];
+    NSString *message=[notification.userInfo objectForKey:@"msg"];
+    NSString * notID = [notification.userInfo objectForKey:@"notificationId"];
     if (state == UIApplicationStateActive) {
         
         //		NSString *notID = [notification.userInfo objectForKey:@"notificationId"];
-        NSString * msg = [notification.userInfo objectForKey:@"msg"];
+//        NSString * msg = [notification.userInfo objectForKey:@"msg"];
+//        NSString * notID = [notification.userInfo objectForKey:@"notificationId"];
         //		NSString * jsStr = [NSString stringWithFormat:@"uexLocalNotification.onActive(\'%@\', \'%@\')", notID, msg];
         //		EBrowserView *brwView = [meBrwCtrler.meBrwMainFrm.meBrwWgtContainer aboveWindowContainer].meRootBrwWnd.meBrwView;
         //		if (brwView) {
         //			[brwView  stringByEvaluatingJavaScriptFromString:jsStr];
         //		}
+        //NSString * notID = [notification.userInfo objectForKey:@"notificationId"];
+        //NSString * jsStr = [NSString stringWithFormat:@"uexLocalNotification.onMessage(\'%@\',\'%@\')",notID,message,[@{@"extras":extras} ac_JSONFragment]];
+        [AppCanRootWebViewEngine() callbackWithFunctionKeyPath:@"uexLocalNotification.onMessage" arguments:ACArgsPack(notID,message,[@{@"extras":extras} ac_JSONFragment])];
+        /*
+         EBrowserView *brwView = [meBrwCtrler.meBrwMainFrm.meBrwWgtContainer aboveWindowContainer].meRootBrwWnd.meBrwView;
+         if (brwView) {
+         
+         [brwView  stringByEvaluatingJavaScriptFromString:jsStr];
+         
+         }
+         */
+        //[EUtility evaluatingJavaScriptInRootWnd:jsStr];
         application.applicationIconBadgeNumber = 0;
-        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:UEX_LOCALIZEDSTRING(@"提示") message:msg delegate:self cancelButtonTitle:UEX_LOCALIZEDSTRING(@"确认") otherButtonTitles:nil];
-        alertView.tag = 200;
-        [alertView show];
-        [alertView release];
+//        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:UEX_LOCALIZEDSTRING(@"提示") message:msg delegate:self cancelButtonTitle:UEX_LOCALIZEDSTRING(@"确认") otherButtonTitles:nil];
+//        alertView.tag = 200;
+//        [alertView show];
+//        [alertView release];
         
     } else {
-        //NSDictionary *extras=[self parseRemoteNotification:[notification.userInfo objectForKey:@"extras"]];
-        NSString *extras=[notification.userInfo objectForKey:@"extras"];
-        NSString * notID = [notification.userInfo objectForKey:@"notificationId"];
-        NSString * jsStr = [NSString stringWithFormat:@"uexLocalNotification.onActive(\'%@\',\'%@\')",notID, [@{@"extras":extras} JSONFragment]];
+        
+        //NSString * jsStr = [NSString stringWithFormat:@"uexLocalNotification.onActive(\'%@\',\'%@\')",notID,message];
         /*
         EBrowserView *brwView = [meBrwCtrler.meBrwMainFrm.meBrwWgtContainer aboveWindowContainer].meRootBrwWnd.meBrwView;
         if (brwView) {
@@ -87,7 +110,8 @@
             
         }
          */
-        [EUtility evaluatingJavaScriptInRootWnd:jsStr];
+        //[EUtility evaluatingJavaScriptInRootWnd:jsStr];
+        [AppCanRootWebViewEngine() callbackWithFunctionKeyPath:@"uexLocalNotification.onActive" arguments:ACArgsPack(notID,message,[@{@"extras":extras} ac_JSONFragment])];
         application.applicationIconBadgeNumber = 0;
         
     }
@@ -148,7 +172,7 @@
 		badge = [[inArguments objectAtIndex:7] intValue];
     }
     if (count > 8) {
-        extras = [[inArguments objectAtIndex:8] JSONValue];
+        extras = [[inArguments objectAtIndex:8] ac_JSONValue];
     }
 	NSMutableDictionary *repeatDict = [[NSMutableDictionary alloc] init];
     [repeatDict setObject:[NSNumber numberWithInt:NSDayCalendarUnit] forKey:@"daily"];
@@ -208,8 +232,8 @@
 		return;
 	}
 	NSString *msg = [localNotifDict objectForKey:notificationId];
-	NSString *jsStr = [NSString stringWithFormat:@"uexLocalNotification.cbGetData(\'%@\',\'%@\')", notificationId, msg];
-	[meBrwView stringByEvaluatingJavaScriptFromString:jsStr];
+	//NSString *jsStr = [NSString stringWithFormat:@"uexLocalNotification.cbGetData(\'%@\',\'%@\')", notificationId, msg];
+	[self.webViewEngine callbackWithFunctionKeyPath:@"uexLocalNotification.cbGetData" arguments:ACArgsPack(notificationId,msg)];
 }
 
 @end
