@@ -1,15 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
     <plugin
-        uexName="uexLocalNotification" version="3.0.8" build="8">
-        <info>8:添加前台收到通知的监听方法</info>
-        <build>7:添加用户点击了通知栏的监听方法</build>
-        <build>6:添加IDE支持</build>
-        <build>5:删除info.plist</build>
-        <build>4:添加国际化支持</build>
-        <build>3:添加对接收到本地通知的处理方法</build>
-        <build>2:修复iOS8.0+系统上可能不能正常发送通知的bug</build>
-        <build>1:本地闹钟功能增加只循环一次和传入铃声代码默认写死</build>
-        <build>0:本地闹钟功能插件</build>
+        uexName="uexLocalNotification" version="3.0.9" build="9">
+        <info>9: IDE证书更新</info>
+        <build>8: 添加前台收到通知的监听方法</build>
+        <build>7: 添加用户点击了通知栏的监听方法</build>
+        <build>6: 添加IDE支持</build>
+        <build>5: 删除info.plist</build>
+        <build>4: 添加国际化支持</build>
+        <build>3: 添加对接收到本地通知的处理方法</build>
+        <build>2: 修复iOS8.0+系统上可能不能正常发送通知的bug</build>
+        <build>1: 本地闹钟功能增加只循环一次和传入铃声代码默认写死</build>
+        <build>0: 本地闹钟功能插件</build>
     </plugin>
 </uexplugins>
