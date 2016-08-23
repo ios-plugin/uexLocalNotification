@@ -6,26 +6,26 @@
 	<dict>
 		<key>Info.plist</key>
 		<data>
-		J/IPaL0RHQxg5x1NMdnoeHNBKxA=
+		u2lNAlgrVyGOtXxxOi5xXCT3bjM=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		JKbXoT98W7zj86Z2W3qbeHZe/kE=
+		VccYRc8+LJpEK2ajGtgIir/pOpk=
 		</data>
-		<key>uexLocalNotification.bundle/Contents/Resources/en.lproj/Localizable.strings</key>
+		<key>uexLocalNotification.bundle/en.lproj/Localizable.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			zZXFeH2yRcRNJUUqVP9GDc/wxOU=
+			jW0BmxRWy7eoNXqvcHRdS3Bnd/Q=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>uexLocalNotification.bundle/Contents/Resources/zh-Hans.lproj/Localizable.strings</key>
+		<key>uexLocalNotification.bundle/zh-Hans.lproj/Localizable.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			teL3GaDgbI2GcPddbHJHhfxSZ5I=
+			ktpjUfp2VkjL9subEoT7L31h7ic=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -34,23 +34,38 @@
 	<key>files2</key>
 	<dict>
 		<key>embedded.mobileprovision</key>
-		<data>
-		JKbXoT98W7zj86Z2W3qbeHZe/kE=
-		</data>
-		<key>uexLocalNotification.bundle/Contents/Resources/en.lproj/Localizable.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			zZXFeH2yRcRNJUUqVP9GDc/wxOU=
+			VccYRc8+LJpEK2ajGtgIir/pOpk=
+			</data>
+			<key>hash2</key>
+			<data>
+			ejCBtnGtWqhlrYI4GRjoMJxaexgdSnhjWGPR+Vc9frw=
+			</data>
+		</dict>
+		<key>uexLocalNotification.bundle/en.lproj/Localizable.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			jW0BmxRWy7eoNXqvcHRdS3Bnd/Q=
+			</data>
+			<key>hash2</key>
+			<data>
+			ZtLi3dOhAgIe3DPLtDs/jLgSwK/aRJ+quxDr5EcquUA=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>uexLocalNotification.bundle/Contents/Resources/zh-Hans.lproj/Localizable.strings</key>
+		<key>uexLocalNotification.bundle/zh-Hans.lproj/Localizable.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			teL3GaDgbI2GcPddbHJHhfxSZ5I=
+			ktpjUfp2VkjL9subEoT7L31h7ic=
+			</data>
+			<key>hash2</key>
+			<data>
+			Rzdozbs/OP1rL1zJDh9n9NqeIN+8ekhRclCLew8jUO4=
 			</data>
 			<key>optional</key>
 			<true/>
