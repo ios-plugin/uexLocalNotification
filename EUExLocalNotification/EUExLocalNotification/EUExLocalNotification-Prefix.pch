@@ -7,7 +7,6 @@
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "EUtility.h"
 #import <AppCanKit/AppCanKit.h>
-#define UEX_LOCALIZEDSTRING(...) [EUtility uexPlugin:@"uexLocalNotification" localizedString:__VA_ARGS__,nil]
+#define UEX_LOCALIZEDSTRING(...) [NSString ac_plugin:@"uexLocalNotification" localizedString:__VA_ARGS__];
 #endif

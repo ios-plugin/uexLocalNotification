@@ -7,9 +7,5 @@
 //
 
 
-@interface EUExLocalNotification : EUExBase {
-    
-
-}
-
+@interface EUExLocalNotification : EUExBase
 @end
