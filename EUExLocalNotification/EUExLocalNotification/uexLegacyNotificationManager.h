@@ -1,10 +1,10 @@
 /**
  *
- *	@file   	: ACPluginBundle.h  in AppCanKit
+ *	@file   	: uexLegacyNotificationManager.h  in EUExLocalNotification
  *
- *	@author 	: CeriNo 
+ *	@author 	: CeriNo
  * 
- *	@date   	: Created on 16/5/31.
+ *	@date   	: 2016/11/8
  *
  *	@copyright 	: 2016 The AppCan Open Source Project.
  *
@@ -20,31 +20,18 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
- 
+
+
 #import <Foundation/Foundation.h>
+#import "EUExLocalNotification.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@interface uexLegacyNotificationManager: NSObject<uexLocalNotificationManager>
+@property (nonatomic,strong,nullable)NotificationDataHandleBlock onActionHandler;
+@property (nonatomic,strong,nullable)NotificationDataHandleBlock onMessageHandler;
 
-@interface NSBundle (ACPluginBundle)
-/**
- *  获取插件的资源包实例
- *
- *  @param pluginName 插件名
- *  @return 插件同名的资源文件对应的NSBundle实例
- */
-+ (nullable instancetype)ac_bundleForPlugin:(NSString *)pluginName;
-@end
 
-@interface NSString (ACPluginBundle)
-/**
- *  插件国际化
- *
- *  @param pluginName 插件名
- *  @param key        插件bundle中Localizable.string里声明的字符串key
- *         defaultValue 如果有传入第二个参数，即为defaultValue key匹配失败时会返回此值
- *  @return key对应的国际化字符串
- */
-+ (instancetype)ac_plugin:(NSString *)pluginName localizedString:(NSString *)key,...;
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification;
 @end
 
 NS_ASSUME_NONNULL_END
