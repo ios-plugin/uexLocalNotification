@@ -1,0 +1,6 @@
+framework module uexLocalNotification {
+  umbrella header "uexLocalNotification.h"
+
+  export *
+  module * { export * }
+}

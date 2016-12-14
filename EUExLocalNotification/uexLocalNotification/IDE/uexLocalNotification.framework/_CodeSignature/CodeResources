@@ -4,56 +4,42 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Headers/uexLocalNotification.h</key>
+		<data>
+		7IjA25zF0doUOvYMF9Rd0HkTq7A=
+		</data>
 		<key>Info.plist</key>
 		<data>
-		J/IPaL0RHQxg5x1NMdnoeHNBKxA=
+		i01vwOYnEB8SEspVN6yRuZLV5ZI=
 		</data>
-		<key>embedded.mobileprovision</key>
+		<key>Modules/module.modulemap</key>
 		<data>
-		JKbXoT98W7zj86Z2W3qbeHZe/kE=
+		ncO5PUZKkp3IvwNLFtjQr3+Y94c=
 		</data>
-		<key>uexLocalNotification.bundle/Contents/Resources/en.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			zZXFeH2yRcRNJUUqVP9GDc/wxOU=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>uexLocalNotification.bundle/Contents/Resources/zh-Hans.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			teL3GaDgbI2GcPddbHJHhfxSZ5I=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>embedded.mobileprovision</key>
-		<data>
-		JKbXoT98W7zj86Z2W3qbeHZe/kE=
-		</data>
-		<key>uexLocalNotification.bundle/Contents/Resources/en.lproj/Localizable.strings</key>
+		<key>Headers/uexLocalNotification.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			zZXFeH2yRcRNJUUqVP9GDc/wxOU=
+			7IjA25zF0doUOvYMF9Rd0HkTq7A=
 			</data>
-			<key>optional</key>
-			<true/>
+			<key>hash2</key>
+			<data>
+			dw9gFr26g57hFCG+ez6os7tKNxRpjNrgisNEsRo8GSs=
+			</data>
 		</dict>
-		<key>uexLocalNotification.bundle/Contents/Resources/zh-Hans.lproj/Localizable.strings</key>
+		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			teL3GaDgbI2GcPddbHJHhfxSZ5I=
+			ncO5PUZKkp3IvwNLFtjQr3+Y94c=
 			</data>
-			<key>optional</key>
-			<true/>
+			<key>hash2</key>
+			<data>
+			Bjn2g+hN5aFN7EgWukgOeyzdf7V5FrLDe+XhEbF0E/0=
+			</data>
 		</dict>
 	</dict>
 	<key>rules</key>
@@ -73,6 +59,11 @@
 			<true/>
 			<key>weight</key>
 			<real>1100</real>
+		</dict>
+		<key>^Base\.lproj/</key>
+		<dict>
+			<key>weight</key>
+			<real>1010</real>
 		</dict>
 		<key>^version.plist$</key>
 		<true/>
@@ -118,6 +109,11 @@
 			<true/>
 			<key>weight</key>
 			<real>1100</real>
+		</dict>
+		<key>^Base\.lproj/</key>
+		<dict>
+			<key>weight</key>
+			<real>1010</real>
 		</dict>
 		<key>^Info\.plist$</key>
 		<dict>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0720"
+   LastUpgradeVersion = "0810"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,21 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C1AD5BF1BD610910091D2A1"
-               BuildableName = "uexLocalNotification.bundle"
-               BlueprintName = "uexLocalNotificationBundle"
-               ReferencedContainer = "container:EUExLocalNotificationIDE.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5A5018F1188FCEEA0022E07C"
+               BlueprintIdentifier = "426A301A1DD162FE006D1872"
                BuildableName = "uexLocalNotification.framework"
                BlueprintName = "EUExLocalNotification"
                ReferencedContainer = "container:EUExLocalNotificationIDE.xcodeproj">
@@ -43,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5A5018F1188FCEEA0022E07C"
-            BuildableName = "uexLocalNotification.framework"
-            BlueprintName = "EUExLocalNotification"
-            ReferencedContainer = "container:EUExLocalNotificationIDE.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -68,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5A5018F1188FCEEA0022E07C"
+            BlueprintIdentifier = "426A301A1DD162FE006D1872"
             BuildableName = "uexLocalNotification.framework"
             BlueprintName = "EUExLocalNotification"
             ReferencedContainer = "container:EUExLocalNotificationIDE.xcodeproj">
@@ -86,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5A5018F1188FCEEA0022E07C"
+            BlueprintIdentifier = "426A301A1DD162FE006D1872"
             BuildableName = "uexLocalNotification.framework"
             BlueprintName = "EUExLocalNotification"
             ReferencedContainer = "container:EUExLocalNotificationIDE.xcodeproj">
