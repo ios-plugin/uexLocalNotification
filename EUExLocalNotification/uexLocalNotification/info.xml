@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
     <plugin
-        uexName="uexLocalNotification" version="3.0.9" build="9">
-        <info>9: IDE证书更新</info>
+        uexName="uexLocalNotification" version="3.0.11.1" build="12">
+        <info>11.1: 增加提醒方式处理</info>
+        <build>11: 修复调用add方法时崩溃的问题</build>
+        <build>10: 支持iOS10</build>
+        <build>9: IDE证书更新</build>
         <build>8: 添加前台收到通知的监听方法</build>
         <build>7: 添加用户点击了通知栏的监听方法</build>
         <build>6: 添加IDE支持</build>

@@ -9,6 +9,15 @@
 #import "EUExLocalNotification.h"
 #import "EUtility.h"
 #import "JSON/JSON.h"
+#import <AudioToolbox/AudioToolbox.h>
+
+#define MUTE_NOTI @"mute"//静音
+#define SOUND_NOTI @"sound"//铃声
+#define VIBRATE_NOTI @"vibrate"//震动
+#define BOTH_NOTI @"both"//铃声&震动
+#define UNKNOWN_NOTI @"unknown"//未知
+
+#define SOUND_ID_NOTI 1007
 
 @interface EUExLocalNotification()
 
@@ -17,8 +26,7 @@
 
 @implementation EUExLocalNotification
 
-
--(id)initWithBrwView:(EBrowserView *) eInBrwView {	
+-(id)initWithBrwView:(EBrowserView *) eInBrwView {
 	if (self = [super initWithBrwView:eInBrwView]) {
         if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)])
         {
@@ -57,12 +65,14 @@
     }
 }
 +(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+    NSLog(@"AppCan==>>uexLocalNotification==>>didReceiveLocalNotification==>>notification.userInfo==>>%@",notification.userInfo);
+    NSDictionary *getInfoDic = notification.userInfo;
+    
     UIApplicationState state = [application applicationState];
     NSDictionary *extras=[self parseRemoteNotification:[notification.userInfo objectForKey:@"extras"]];
     NSString *message=[notification.userInfo objectForKey:@"msg"];
     NSString * notID = [notification.userInfo objectForKey:@"notificationId"];
     if (state == UIApplicationStateActive) {
-        
         //		NSString *notID = [notification.userInfo objectForKey:@"notificationId"];
         //NSString * msg = [notification.userInfo objectForKey:@"msg"];
         //		NSString * jsStr = [NSString stringWithFormat:@"uexLocalNotification.onActive(\'%@\', \'%@\')", notID, msg];
@@ -70,6 +80,32 @@
         //		if (brwView) {
         //			[brwView  stringByEvaluatingJavaScriptFromString:jsStr];
         //		}
+        
+        //app处于活跃状态
+        
+        if ([getInfoDic objectForKey:@"sound"] != nil) {
+            
+            if ([getInfoDic[@"sound"] isEqualToString:SOUND_NOTI]) {
+                SystemSoundID myAlertSound = SOUND_ID_NOTI;
+                AudioServicesPlaySystemSound(myAlertSound);
+            }
+            
+            if ([getInfoDic[@"sound"] isEqualToString:BOTH_NOTI]) {
+                SystemSoundID myAlertSound = SOUND_ID_NOTI;
+                AudioServicesPlaySystemSound(myAlertSound);
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+            }
+            
+            if ([getInfoDic[@"sound"] isEqualToString:VIBRATE_NOTI]) {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+            }
+            
+            if ([getInfoDic[@"sound"] isEqualToString:UNKNOWN_NOTI]) {
+                SystemSoundID myAlertSound = SOUND_ID_NOTI;
+                AudioServicesPlaySystemSound(myAlertSound);
+            }
+        }
+        
          NSString * jsStr = [NSString stringWithFormat:@"uexLocalNotification.onMessage(\'%@\',\'%@\',\'%@\')",notID,message, [@{@"extras":extras} JSONFragment]];
          [EUtility evaluatingJavaScriptInRootWnd:jsStr];
         application.applicationIconBadgeNumber = 0;
@@ -82,6 +118,11 @@
         //NSDictionary *extras=[self parseRemoteNotification:[notification.userInfo objectForKey:@"extras"]];
 //        NSString *extras=[notification.userInfo objectForKey:@"extras"];
 //        NSString * notID = [notification.userInfo objectForKey:@"notificationId"];
+        
+        if ([getInfoDic[@"sound"] isEqualToString:VIBRATE_NOTI] || [getInfoDic[@"sound"] isEqualToString:BOTH_NOTI]) {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        }
+        
         NSString * jsStr = [NSString stringWithFormat:@"uexLocalNotification.onActive(\'%@\',\'%@\',\'%@\')",notID,message, [@{@"extras":extras} JSONFragment]];
         /*
         EBrowserView *brwView = [meBrwCtrler.meBrwMainFrm.meBrwWgtContainer aboveWindowContainer].meRootBrwWnd.meBrwView;
@@ -117,6 +158,15 @@
 }
 
 -(void)add:(NSMutableArray *)inArguments {
+    
+//    NSLog(@"add inArguments = %@",inArguments);
+//    
+//    for (id q1 in inArguments) {
+//        
+//        NSLog(@"add inArguments class ==== %@",[q1 class]);
+//        
+//    }
+    
 	NSString *notificationId = nil;
 	double timestamp = -1.0;
 	BOOL hasAction = NO;
@@ -164,7 +214,7 @@
 	NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
 	for (UILocalNotification *notification in notifications) {
 		NSString *notId = [notification.userInfo objectForKey:@"notificationId"];
-		if ([notificationId isEqualToString:notId]) {
+		if ([[NSString stringWithFormat:@"%@",notificationId] isEqualToString:[NSString stringWithFormat:@"%@",notId]]) {
 			[[UIApplication sharedApplication] cancelLocalNotification:notification];
 			break;
 		}
@@ -178,15 +228,29 @@
     notif.repeatInterval = [[repeatDict objectForKey:repeat] intValue];
 	notif.alertBody = ([msg isEqualToString:@""]) ? nil : msg;
 	notif.alertAction = action;
-    notif.soundName = UILocalNotificationDefaultSoundName;
+    
+    if ([[NSString stringWithFormat:@"%@",sound] isEqualToString:MUTE_NOTI]) {
+        notif.soundName = nil;
+    } else if ([[NSString stringWithFormat:@"%@",sound] isEqualToString:SOUND_NOTI] || [[NSString stringWithFormat:@"%@",sound] isEqualToString:BOTH_NOTI]) {
+        notif.soundName = UILocalNotificationDefaultSoundName;
+    } else if ([[NSString stringWithFormat:@"%@",sound] isEqualToString:VIBRATE_NOTI]) {
+        notif.soundName = nil;
+    } else {
+        notif.soundName = UILocalNotificationDefaultSoundName;
+        sound = UNKNOWN_NOTI;
+    }
+    
     notif.applicationIconBadgeNumber = badge;
 	NSDictionary *userDict = nil;
 	if (msg && msg.length > 0) {
-		userDict = [NSDictionary dictionaryWithObjectsAndKeys:notificationId,@"notificationId",msg,@"msg",extras,@"extras",nil];
+		userDict = [NSDictionary dictionaryWithObjectsAndKeys:notificationId,@"notificationId",msg,@"msg",extras,@"extras",sound,@"sound",nil];
 	} else {
-		userDict = [NSDictionary dictionaryWithObjectsAndKeys:notificationId,@"notificationId",nil];
+		userDict = [NSDictionary dictionaryWithObjectsAndKeys:notificationId,@"notificationId",sound,@"sound",nil];
 	}
     notif.userInfo = userDict;
+    
+    NSLog(@"");
+    
 	[[UIApplication sharedApplication] scheduleLocalNotification:notif];
 }
 
@@ -195,7 +259,7 @@
 	NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
 	for (UILocalNotification *notification in notifications) {
 		NSString *notId = [notification.userInfo objectForKey:@"notificationId"];
-		if ([notificationId isEqualToString:notId]) {
+		if ([[NSString stringWithFormat:@"%@",notificationId] isEqualToString:[NSString stringWithFormat:@"%@",notId]]) {
 			[[UIApplication sharedApplication] cancelLocalNotification:notification];
 		}
 	}
