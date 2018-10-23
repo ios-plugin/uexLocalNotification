@@ -131,26 +131,83 @@ static uexLocalNotificationData* _Nullable dataForNotification(UNNotification *n
     
     UNNotificationTrigger *trigger;
     if (data.repeatInterval == 0) {
+        
+        if ([data.fireDate timeIntervalSinceNow] < 0) {
+            return;
+        }
+        
         trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:[data.fireDate timeIntervalSinceNow] repeats:NO];
     }else{
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         [calendar setTimeZone:[NSTimeZone localTimeZone]];
-        NSDateComponents *components = [calendar components:data.repeatInterval fromDate:data.fireDate];
+        
+        NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;//这句我也不明白具体时用来做什么。。。
+        NSDateComponents *comps = [calendar components:unitFlags fromDate:data.fireDate];
+        
+        //用户设置的首次触发时间
+        NSUInteger weekNumber = [comps weekday]; //获取星期对应的长整形字符串
+        NSUInteger day=[comps day];//获取日期对应的长整形字符串
+        //NSUInteger year=[comps year];//获取年对应的长整形字符串
+        NSUInteger month=[comps month];//获取月对应的长整形字符串
+        NSUInteger hour=[comps hour];//获取小时对应的长整形字符串
+        NSUInteger minute=[comps minute];//获取月对应的长整形字符串
+        NSUInteger second=[comps second];//获取秒对应的长整形字符串
+        
+        NSDateComponents *components = [[NSDateComponents alloc] init];
+        switch (data.repeatInterval) {
+            case NSCalendarUnitDay:
+            {
+                components.hour = hour;
+                components.minute = minute;
+                components.second = second;
+            }
+                break;
+            case NSCalendarUnitWeekOfYear:
+            {
+                components.weekday = weekNumber;
+                components.hour = hour;
+                components.minute = minute;
+                components.second = second;
+            }
+                break;
+            case NSCalendarUnitMonth:
+            {
+                components.day = day;
+                components.hour = hour;
+                components.minute = minute;
+                components.second = second;
+            }
+                break;
+            case NSCalendarUnitYear:
+            {
+                components.month = month;
+                components.day = day;
+                components.hour = hour;
+                components.minute = minute;
+                components.second = second;
+            }
+                break;
+                
+            default:
+                return;
+                break;
+        }
+        
         trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
+        
+        UNCalendarNotificationTrigger *testTrigger = (UNCalendarNotificationTrigger *)trigger;
+        NSLog(@"AppCan --> uexLocalNotification --> add --> next time = %@",[testTrigger nextTriggerDate]);
     }
     
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:data.uid content:content trigger:trigger];
     
     [[UNUserNotificationCenter currentNotificationCenter]addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
         if(error){
-            ACLogWarning(@"uexLocalNotification add notification ERROR: %@",error.localizedDescription);
+            ACLogWarning(@"AppCan --> uexLocalNotification --> uexLocalNotification add notification ERROR: %@",error.localizedDescription);
         }
     }];
-
-    
-    
-    
 }
+
 - (void)cancelNotificationWithUID:(NSString *)uid{
     if (!uid) {
         return;
